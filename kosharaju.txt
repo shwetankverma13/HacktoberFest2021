@@ -1,0 +1,78 @@
+    #include <iostream>
+    #include <algorithm>
+    #include <cmath>
+    #include <string>
+    #include <cstring>
+    #include <bitset>
+    #include <iterator>
+    #include <map>
+    #include <vector>
+    #include <unordered_set>
+    #include <unordered_map>
+    #include <set>
+
+    typedef long long lli;
+    typedef long double ld;
+    using namespace std;
+
+    #define f(i,a,b) for(lli i=a;i<b;i++)
+    #define pb push_back
+    #define FAST_IO ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+    const int MOD = 1000000007;
+
+  vector<lli>res;  
+    void dfs1(lli s,lli visited1[],vector<lli>adj[]) {
+    if(visited1[s])
+    return;
+    visited1[s]=true;
+    for(auto u:adj[s]){
+        dfs1(u,visited1,adj);
+    }
+    res.push_back(s);
+} 
+void dfs2(lli s,lli visited2[],vector<lli>rev[]) {
+    if(visited2[s])
+    return;
+    visited2[s]=true;
+    for(auto u:rev[s]){
+        dfs2(u,visited2,rev);
+    }
+   cout<<s<<" ";
+} 
+void ans()
+{
+lli i,j,k,a,b,c,e,p,q,r,m,n,o,t,x,sum=0,flag=0,cnt=0;
+  cin>>n>>e;
+  lli visited1[n]={0};
+  lli visited2[n]={0};
+  vector<lli>adj[n];
+  vector<lli>rev[n];
+  f(i,0,e){
+      cin>>a>>b;
+      adj[a].pb(b);
+      rev[b].pb(a);
+    }
+f(i,0,n){
+    if(visited1[i]==0) 
+    dfs1(i,visited1,adj);
+}
+for(i=res.size()-1;i>=0;i--){
+    if(visited2[res[i]]==0) 
+    dfs2(res[i],visited2,rev);  
+    cout<<endl;  
+}
+
+ }
+ int main()
+{
+       FAST_IO;
+    
+       lli t=1;
+       //cin>>t;
+    
+    f(i,0,t)
+    {
+          ans();
+    }
+    
+}

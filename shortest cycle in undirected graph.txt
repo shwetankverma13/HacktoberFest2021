@@ -1,0 +1,62 @@
+    #include<bits/stdc++.h>
+    typedef long long lli;
+    typedef long double ld;
+    using namespace std;
+    #define f(i,a,b) for(lli i=a;i<b;i++)
+    #define pb push_back
+    #define FAST_IO ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+    const int MOD = 1000000007;
+void bfs(lli src,lli n,lli &ans,vector<lli>adj[]) {
+    vector<lli>dis(n+1,INT_MAX);
+    queue<lli>q;
+    q.push(src);
+    dis[src]=0;
+    while(!q.empty()){
+        lli curr=q.front();
+        q.pop();
+        for(auto i:adj[curr]){
+            if(dis[i]==INT_MAX){
+                dis[i]=dis[curr]+1;
+                q.push(i);
+            }
+            else if(dis[i]>=dis[curr])
+            ans=min(ans,dis[i]+dis[curr]+1);
+        }
+    }
+     
+ }  
+void ans()
+{
+lli i,j,k,a,b,c,p,q,r,m,n,o,t,x,sum=0,flag=0,cnt,ans;
+cin>>n>>p;
+vector<lli>adj[n];
+f(i,0,p){
+cin>>b>>c;
+adj[b].pb(c);
+adj[c].pb(b);
+}
+ans=n+1;
+f(i,1,n){
+    bfs(i,n,ans,adj);
+}
+if(ans==n+1)
+cout<<"no cycle"<<endl;
+else{
+    cout<<"shortest cycle of length"<<ans<<endl;
+}
+
+}
+
+int main()
+{
+       FAST_IO;
+    
+       lli t=1;
+       /*cin>>t;*/
+    
+    f(i,0,t)
+    {
+          ans();
+    }
+    
+}

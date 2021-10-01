@@ -1,0 +1,73 @@
+        #include <iostream>
+    #include <algorithm>
+    #include <cmath>
+    #include <string>
+    #include <cstring>
+    #include <bitset>
+    #include <iterator>
+    #include <map>
+    #include <vector>
+    #include <unordered_set>
+    #include <unordered_map>
+    #include <set>
+
+    typedef long long lli;
+    typedef long double ld;
+    lli INT_MAX =2147483647;
+    using namespace std;
+
+    #define f(i,a,b) for(lli i=a;i<b;i++)
+    #define pb push_back
+    #define FAST_IO ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+    const int MOD = 1000000007;
+vector<lli> bellmon(lli src,lli v,lli dist[],vector<tuple<lli,lli,lli>> &edges)   {
+     f(i,0,v-1){
+         for(auto u: edges){
+             if(dist[get<0>(u)]+get<2>(u)< dist[get<1>(u)])
+                dist[get<1>(u)]=dist[get<0>(u)]+get<2>(u);
+
+         }
+     }
+      for(auto u: edges){
+             if(dist[get<0>(u)]+get<2>(u)< dist[get<1>(u)]){
+                cout<<"negative cycle present"<<endl;
+                exit(0);
+             }      
+     }
+     f(i,1,v+1){
+         cout<<"no negative cycle"<<endl;
+         cout<<"distance to--->"<<i<<" is--->"<<dist[i]<<endl;
+
+     }
+ }
+
+    
+void ans()
+{
+lli i,j,k,a,b,c,w,e,v,p,q,r,m,n,o,t,x,sum=0,flag=0,cnt=0,src;
+ cin>>v>>e>>src;
+ lli dist[v+1];
+ f(i,1,v+1)
+ dist[i]=INT_MAX;
+ dist[src]=0;
+vector<tuple<lli,lli,lli>> edges;
+f(i,0,e){
+    cin>>a>>b>>w;
+    edges.pb({a,b,w});
+}
+bellmon(src,v,dist,edges);
+ }
+
+int main()
+{
+       FAST_IO;
+    
+       lli t=1;
+      // cin>>t;
+    
+    f(i,0,t)
+    {
+          ans();
+    }
+    
+}
