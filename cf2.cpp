@@ -76,7 +76,7 @@ ll lcm(ll x, ll y) {return (x * y) / gcd(x, y);}
   #define N 100005
   #define MN 300005
   vector<int> sz;
-  // vector<ll> adj[200005];
+// vector<ll> adj[200005];
   // ll dp1[50005][501];
   // ll dp2[50005][501];
   // ll diameter[200005];
@@ -214,46 +214,38 @@ ll lcm(ll x, ll y) {return (x * y) / gcd(x, y);}
 //     }
 /////DONT ERASE///////////DONT ERASE////////DONT ERASE//////////DONT ERASE////////////DONT ERASE////////DONT ERASE//////////DONT ERASE/////////////////
 //BAAD ME LIKHNE ME PROBLEM HOGI GAANDU.
-
-
-int main(){
-  int T;
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+     int  T;
   cin>>T;
   // FOR FINDING FACTORIAL OF NUMBERS FROM 1 TO 2*10^5 and here MODULO is 1e9+7
-   ll *fact = new ll[200000 + 5];
-   ll *ifact = new ll[200000 + 5];
-  fact[0] = 1, ifact[0] = 1;
-  for (ll i = 1; i <= 2e5+2; i++) {
-    fact[i] = mod_mul(fact[i - 1], i, mod1);
-    ifact[i] = invert(fact[i],mod1);
-  }
-  while(T--)
-  {
-     int n;
-     cin>>n;
-      vector<int> vec(n+1);
-       for( int i = 1;i<=n;i++ )
-       { int x;
-        cin>>x;
-        vec[i] = x;
-       }
-       sort(vec.begin() + 1,vec.end());
-     if(count(vec.begin() + 1,vec.end(),vec.back())>1){ cout<<fact[n]<<"\n"; continue;}
-     if(count(vec.begin() + 1,vec.end(),vec.back()-1)==0){ cout<< 0<<" \n"; continue;}
-         ll cnt = count(all(vec),vec.back()-1);
-         ll ans = fact[n];
-          for (int i = 1; i <=n; ++i)
-          {
-             if(i-1< cnt) continue;
+  //  ll *fact = new ll[200000 + 5];
+  //  ll *ifact = new ll[200000 + 5];
+  // fact[0] = 1, ifact[0] = 1;
+  // for (ll i = 1; i <= 2e5+2; i++) {
+  //   fact[i] = mod_mul(fact[i - 1], i, mod1);
+  //   ifact[i] = invert(fact[i],mod1);
 
-                ll dec = ((combination((i - 1),cnt,mod1,fact,ifact) * fact[cnt])%mod1 * fact[n - cnt - 1])%mod1;
-                 ans = mod_sub(ans,dec,mod1);
+  int ans1 = 0;
+    while(T--)
+    { int n;
+    cin >> n;
+    int m;
+    cin >> m;
+    multiset<int>st;
+    int sm = 0;
+    for (int i = 0; i < m; i++)
+    {
+      int g;
+      cin >> g;
+      st.insert(g);
+      int y = distance(st.begin(), st.find(g));
+      sm += (y);
 
-          }
-           cout<<ans<<"\n";
+    }
+    cout << sm << "\n";
 
-  }
-   return 0;
+    }
+
 }
-
-
